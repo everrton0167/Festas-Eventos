@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Cadastro de Local de Evento</h1>
+	<table>
+		<tbody>
+			<tr th:each="prod : ${listaProdutos}">
+				<td class="text-center" th:text="${prod.codigo}"></td>
+				<td th:text="${prod.categoria.nome}"></td>
+				<td th:text="${prod.nome}"></td>
+				<td th:text="|R$ ${prod.preco}|"></td>
+				<td class="text-right" th:text="${prod.quantidade}|"></td>
+				<td class="text-center">
+					<a th:href="@{/editarProduto(codigo=${prod.codigo})}" class="btn btn-info">Editar</a>
+					<a th:href="@{/removerProduto(codigo=${prod.codigo})}" class="btn btn-alert">Remover</a>
+				</td> 
+			</tr>
+			<tr th:if="${#lists.isEmpty(listaProdutos)}">
+				<td colspan="7">Nenhum produto encontrado</td>
+			</tr>
+		</tbody>
+	</table>	
+		<a th:href="@{/evento/cad_localEvento}">Cadastra um local de evento</a>
+
+</body>
+</html>

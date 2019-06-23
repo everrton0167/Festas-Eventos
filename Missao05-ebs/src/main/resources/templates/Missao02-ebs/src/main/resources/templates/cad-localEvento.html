@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Local de Evento</title>
+</head>
+<body>
+	<h1>Formulario de cadastro</h1>
+	
+<form th:action="@{/salvarLocal}" th:object="${localEvento}" method="post">
+	<input type="hidden" th:field="*{codigo}">
+	Nome: <input type="text" th:field="*{nome}">
+	Endereço: <input type="text" th:field="*{endereco}">
+	Link: <input type="text" th:field="*{link}">
+	Capacidade: <input type="text" th:field="*{capacidade}">
+	Ambiente:<br>
+	<input type="radio" name="ambiente" th:value="aberto" th:field="*{ambiente}">
+	<input type="radio" name="ambiente" th:value="fechado" th:field="*{ambiente}">
+	
+	<button type="submit">Salvar</button>
+</form>
+<a th:href="@{/evento/localEvento}">Página anterior</a>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Formulario de cadastro</title>
+</head>
+<body>
+	<h1>Cadastro de Evento</h1>
+		<form th:action="@{/evento/add}" th:object="${evento}" method="post">
+		<input type="hidden" th:field="*{codigo}"/>
+		<fieldset><legend>Dados do Evento</legend>
+			Nome: <input type="text" th:field="*{nome}"/>
+			<br>
+			Data de Realização: <input type="date" th:field="*{data_realizacao}"/>
+			<br>
+			Quantidade máxima de convidados: <input type="text" th:field="*{quant_max_convidados}"/>
+			<br>
+			Duracão em horas: <input type="text" th:field="*{duracao_horas}"/>
+			<br>
+			Descrição: <textarea th:field="*{descricao}"></textarea>
+			<br>
+		</fieldset>
+		<br>
+		
+		<fieldset><legend>Dados Pessoais</legend>
+			Nome do Responsável: <input type="text" th:field="*{responsavel}"/>
+			<br>
+			Telefone de Responsável: <input type="text" th:field="*{telefone}"/>
+			<br>
+		</fieldset>
+		<br>
+		
+		<input type="submit" value="enviar">
+	</form>
+	<br>
+	
+	<a th:href="@{/evento/home}">Página Inicial</a>
+	<br>
+	<a th:href="@{/evento/lista_eventos}">Voltar para Página anterior</a>
+</body>
+</html>

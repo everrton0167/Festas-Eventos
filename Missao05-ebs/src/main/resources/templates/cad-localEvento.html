@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Local de Evento</title>
+
+</head>
+<link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}">
+<body style="background-color:  #333;">
+	<div class="modal-header modal-header-warning">
+	 <h1  align="center" style="color: white;">Cadastrar Local de Evento</h1> 
+	</div>
+	<div align="right">
+		<a th:href="@{/evento/localEvento}" class="btn btn-primary">Página anterior</a>
+		<a th:href="@{/evento/home}" class="btn btn-primary">Página Inicial</a>
+	</div><br>
+
+<div class="container" style="background-color: white; border-radius: 20px;">
+	<form th:action="@{/evento/salvarLocal}" th:object="${localEvento}" method="post">
+		<input type="hidden" th:field="*{codigo}"><br>
+	<div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationServer013">Name</label>
+        <input type="text" th:field="*{nome}" class="form-control" id="validationServer013" placeholder="Name do local">
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationServer023">Endereço</label>
+        <input type="text" th:field="*{endereco}" class="form-control" id="validationServer023" required>
+      </div>
+    </div>
+     <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationServer013">Link</label>
+        <input type="url" th:field="*{link}" class="form-control" id="validationServer013" required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationServer023">Capacidade</label>
+        <input type="text" th:field="*{capacidade}" class="form-control" id="validationServer023" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationServer013">Ambiente:</label><br>
+	        Aberto <input type="radio" name="ambiente" th:value="aberto" th:field="*{ambiente}">
+			Fechado <input type="radio" name="ambiente" th:value="fechado" th:field="*{ambiente}">
+      </div>
+    </div>
+     <button class="btn btn-success" type="submit" style=" margin: 0% 15% 2% 0%;  padding: 1% 5% 1% 5%;">Salvar</button>
+  </div>    
+	
+</form></div>
+
+
+
+</body>
+</html>
