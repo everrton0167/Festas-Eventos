@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Formulario de cadastro</title>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color:  #333;">
+	<div class="modal-header modal-header-warning">
+	 <h1  align="center" style="color: white;">Cadastro de Evento</h1> 
+	</div>
+	
+	 <div align="right">
+	 <a th:href="@{/}" class="btn btn-primary">Página Inicial</a>
+	<a th:href="@{/lista_eventos}" class="btn btn-primary">Voltar para Página anterior</a>
+	</div>
+	<br>
+<div class="container" style="background-color: white; border-radius: 20px;">
+   <form th:action="@{/add}" th:object="${evento}" method="post">
+   <h2>Dados do Evento</h2>
+   <input type="hidden" th:field="*{codigo}"/>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationServer013">Nome do evento</label>
+        <input type="text" th:field="*{nome}" class="form-control" id="validationServer013" placeholder="Name do evento">
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationServer023">Data de Realização</label>
+        <input type="date" th:field="*{data_realizacao}" class="form-control" id="validationServer023" 
+          value="Otto" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationServer013">Quantidade máxima de convidados</label>
+        <input type="number" th:field="*{quant_max_convidados}" class="form-control" id="validationServer013" placeholder="Minimo 10"
+         required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationServer023">Duracão em horas</label>
+        <input type="number" th:field="*{duracao_horas}" class="form-control" id="validationServer023" 
+          value="Otto" required>
+      </div>
+    </div>
+      <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationServer013">Descrição</label>
+        <textarea th:field="*{descricao}" class="form-control" placeholder="Descreva seu evento"></textarea>
+        
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationServer023">Locais de eventos</label>
+        <div class="input-group">
+        <select th:field="*{localEvento}" class="form-control">
+          <option th:each="cat : ${listaEvento}" th:value="${cat.codigo}" th:text="${cat.nome}"></option>
+        </select>
+      </div>
+    </div>
+  </div>
+      <!---->
+      <h2>Dados Pessoais</h2>
+  <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationServer013">Name do Responsável</label>
+        <input type="text" th:field="*{responsavel}" class="form-control" id="validationServer013" placeholder="Name do Responsável"
+         required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationServer023">Telefone do Responsável</label>
+        <input type="number" th:field="*{telefone}" class="form-control" id="validationServer023">
+      </div>
+    </div>
+ 
+  
+  <button class="btn btn-success" type="submit" style=" margin: 0% 15% 2% 0%;  padding: 1% 5% 1% 5%;">Salvar</button>
+	<div class="form-row">
+	<div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
+			<p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>
+	</div>
+	</div>
+</form></div>
+		
+	<br>
+	
+	<br><br>
+	<footer>© Festa&Evento 2019.</footer>
+</body>
+</html>

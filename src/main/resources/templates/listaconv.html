@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Convidados</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<link rel="stylesheet" th:href="estilo.css">
+</head>
+<body>
+	<div class="modal-header modal-header-warning">
+	 <h1  align="center">Lista de Convidados</h1> 
+	</div>
+	<div align="right">
+	 <a th:href="@{/}" class="btn btn-primary">Página Inicial</a>
+	</div>
+<!-- content -->
+
+    <div class="container-fluid">
+        <div class="content col">
+		      <form class="form-inline" method="post" th:object="${convidado}" th:action="@{/convidados}" style="margin: 20px 0">
+		  <div class="form-group">
+		  <inpu type="hidden" th:field="*{id}">
+		    <input type="text" class="form-control"
+		        placeholder="Nome" th:field="*{nome}"/>
+		    <input type="text" class="form-control"
+		        placeholder="Acompanhantes" th:field="*{quantidadeAcompanhantes}"/>
+		    <button type="submit"
+		      class="btn btn-primary">Adicionar</button>
+		  </div>
+		   <div class="alert alert-danger" th:if="${Errors}">
+    	<div th:if="${Errors}" th:each="lista : ${Errors}" th:text="${lista.getDefaultMessage()}"></div>
+    </div>
+			<div class="alert alert-danger" th:if="${mesagem}" th:text="${mesagem}"></div>
+		</form>
+		
+		
+	
+		
+	<div class="content col" style="border: 2px double black;">
+		<div class="panel panel-default" style="margin: 10px">
+		    <div class="panel-heading">
+		      <h1 class="panel-title">Lista de convidados</h1>
+		  </div>
+		  <div class="panel-body">
+		    <table class="table">
+		      <thead>
+		      <tr th:each="convidado : ${convidados}">
+		        <th th:text="${convidado.nome}"></th>
+		        <th th:text="${convidado.quantidadeAcompanhantes}"></th>
+		      </tr>
+		      </thead>
+		    </table>
+		  </div>
+		</div>
+	</div>
+        </div>
+    </div>
+    <footer>© Festa&Evento 2019.</footer>
+	
+</body>
+</html>

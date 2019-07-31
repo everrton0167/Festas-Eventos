@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>locais de Eventos</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" th:href="estilo.css">
+</head>
+<body>
+	<div class="modal-header modal-header-warning">
+	 	<h1  align="center" >Locais de Eventos</h1>
+	</div>
+	<div align="right">
+		
+		<a href="/" class="btn btn-primary">Página Inicial</a>
+	</div>
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th scope="col">Nome</th>
+			<th scope="col">Capacidade</th>
+			<th scope="col">Link</th>
+			<th scope="col"></th>
+		</tr>
+	</thead>
+	<tbody>
+	<tr th:each="evento : ${listaEvento}">
+		<td th:text="${evento.nome}"></td>
+		<td th:text="${evento.capacidade}"></td>
+		<td> <a th:href="${evento.link}" target="_blank">abrir</a></td>
+		<td>
+			<a th:href="@{/editar(codigo=${evento.codigo})}" class="btn btn-outline-success">Alterar</a>
+			<a th:href="@{/removerLocal(codigo=${evento.codigo})}" class="btn btn-outline-danger">remover</a>
+		</td>
+	</tr>
+	</tbody>
+</table>
+<a href="/cad_localEvento" class="btn btn-primary">Cadastra Local de Evento</a>
+
+<footer>© Festa&Evento 2019.</footer>
+</body>
+</html>
